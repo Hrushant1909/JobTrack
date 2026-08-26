@@ -29,4 +29,15 @@
         android:name="com.hrushant.jobtrack.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/movieDetailsFragment"
+        android:name="com.hrushant.jobtrack.ui.home.MovieDetailsFragment"
+        android:label="MovieDetailsFragment"
+        tools:layout="@layout/fragment_movie_details">
+
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+
+    </fragment>
 </navigation>

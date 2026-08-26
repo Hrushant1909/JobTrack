@@ -10,7 +10,9 @@ import com.bumptech.glide.Glide
 import com.hrushant.jobtrack.R
 import com.hrushant.jobtrack.data.local.entity.Movie
 
-class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter(
+    private val onMovieClick: (Movie) -> Unit
+) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     private var movies = emptyList<Movie>()
 
@@ -41,7 +43,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
         return movies.size
     }
 
-    class MovieViewHolder(
+    inner class MovieViewHolder(
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
 
@@ -67,6 +69,10 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
             Glide.with(itemView.context)
                 .load(movie.posterUrl)
                 .into(ivPoster)
+
+            itemView.setOnClickListener {
+                onMovieClick(movie)
+            }
         }
     }
 }

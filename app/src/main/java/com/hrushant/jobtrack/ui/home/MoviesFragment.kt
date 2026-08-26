@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hrushant.jobtrack.R
@@ -47,9 +48,41 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         val recyclerSciFi =
             view.findViewById<RecyclerView>(R.id.recyclerSciFi)
 
-        val trendingAdapter = MovieAdapter()
-        val popularAdapter = MovieAdapter()
-        val sciFiAdapter = MovieAdapter()
+        val trendingAdapter = MovieAdapter { movie ->
+
+            val bundle = Bundle().apply {
+                putInt("movieId", movie.id)
+            }
+
+            findNavController().navigate(
+                R.id.movieDetailsFragment,
+                bundle
+            )
+        }
+
+        val popularAdapter = MovieAdapter { movie ->
+
+            val bundle = Bundle().apply {
+                putInt("movieId", movie.id)
+            }
+
+            findNavController().navigate(
+                R.id.movieDetailsFragment,
+                bundle
+            )
+        }
+
+        val sciFiAdapter = MovieAdapter { movie ->
+
+            val bundle = Bundle().apply {
+                putInt("movieId", movie.id)
+            }
+
+            findNavController().navigate(
+                R.id.movieDetailsFragment,
+                bundle
+            )
+        }
 
         recyclerTrending.layoutManager =
             LinearLayoutManager(
