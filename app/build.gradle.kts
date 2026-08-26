@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     id("com.google.gms.google-services")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -48,7 +49,17 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
+    implementation("androidx.navigation:navigation-fragment-ktx:2.9.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.9.3")
     implementation(platform("com.google.firebase:firebase-bom:34.18.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")
+    implementation("androidx.viewpager2:viewpager2:1.1.0")
+
+    val room_version = "2.8.4"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 }

@@ -1,12 +1,14 @@
 package com.hrushant.jobtrack
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hrushant.jobtrack.data.repository.AuthRepository
-import com.hrushant.jobtrack.ui.auth.LoginActivity
 import com.hrushant.jobtrack.ui.auth.LoginViewModel
 import com.hrushant.jobtrack.ui.auth.LoginViewModelFactory
 
@@ -22,15 +24,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btnLogout = findViewById<Button>(R.id.btnLogout)
-        btnLogout.setOnClickListener {
-            viewModel.logoutUser()
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.nav_host_fragment)) { view, insets ->
 
-            val intent = Intent(this, LoginActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            }
-            startActivity(intent)
-            finish()
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            view.setPadding(
+                view.paddingLeft,
+                systemBars.top,
+                view.paddingRight,
+                view.paddingBottom
+            )
+
+            insets
         }
+
+        val navController = findNavController(R.id.nav_host_fragment)
+
+        val bottomNavigation =
+            findViewById<BottomNavigationView>(R.id.bottomNavigation)
+
+        bottomNavigation.setupWithNavController(navController)
     }
 }
