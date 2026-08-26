@@ -41,6 +41,21 @@
             android:clipToPadding="false"
             android:nestedScrollingEnabled="false" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="Sci-Fi"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerSciFi"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:clipToPadding="false"
+            android:nestedScrollingEnabled="false" />
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

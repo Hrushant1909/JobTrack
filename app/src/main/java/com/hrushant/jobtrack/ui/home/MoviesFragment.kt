@@ -44,8 +44,12 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
         val recyclerPopular =
             view.findViewById<RecyclerView>(R.id.recyclerPopular)
 
+        val recyclerSciFi =
+            view.findViewById<RecyclerView>(R.id.recyclerSciFi)
+
         val trendingAdapter = MovieAdapter()
         val popularAdapter = MovieAdapter()
+        val sciFiAdapter = MovieAdapter()
 
         recyclerTrending.layoutManager =
             LinearLayoutManager(
@@ -61,17 +65,36 @@ class MoviesFragment : Fragment(R.layout.fragment_movies) {
                 false
             )
 
+        recyclerSciFi.layoutManager =
+            LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+
         recyclerTrending.adapter = trendingAdapter
         recyclerPopular.adapter = popularAdapter
+        recyclerSciFi.adapter = sciFiAdapter
 
         viewLifecycleOwner.lifecycleScope.launch {
 
-            viewModel.movies.collect { movies ->
+            viewModel.trendingMovies.collect { movies ->
 
                 trendingAdapter.submitList(movies)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+
+            viewModel.popularMovies.collect { movies ->
 
                 popularAdapter.submitList(movies)
+            }
+        }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.sciFiMovies.collect { movies ->
+                sciFiAdapter.submitList(movies)
             }
         }
     }

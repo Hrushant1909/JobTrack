@@ -28,4 +28,12 @@ class MovieRepository(
         return movieDao.getMovieCount()
     }
 
+    fun getMoviesByCategory(category: String): Flow<List<Movie>> {
+        return movieDao.getMoviesByCategory(category)
+    }
+
+    fun getMoviesByGenre(genre: String): Flow<List<Movie>> {
+        return movieDao.getMoviesByGenre(genre)
+    }
+
 }

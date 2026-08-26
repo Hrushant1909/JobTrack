@@ -19,5 +19,7 @@ data class Movie(
 
     val rating: Double,
 
-    val releaseYear: Int
+    val releaseYear: Int,
+
+    val category: String
 )

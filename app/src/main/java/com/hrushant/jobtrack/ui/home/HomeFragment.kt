@@ -34,14 +34,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.initializeMovies()
-        viewLifecycleOwner.lifecycleScope.launch {
 
-            viewModel.movies.collect { movies ->
-
-                println("Movies received: ${movies.size}")
-
-            }
-        }
 
         viewPager = view.findViewById(R.id.viewPager)
         tabLayout = view.findViewById(R.id.tabLayout)

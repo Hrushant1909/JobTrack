@@ -25,4 +25,10 @@ interface MovieDao {
     @Query("SELECT COUNT(*) FROM movies")
     suspend fun getMovieCount(): Int
 
+    @Query("SELECT * FROM movies WHERE category = :category")
+    fun getMoviesByCategory(category: String): Flow<List<Movie>>
+
+    @Query("SELECT * FROM movies WHERE genre = :genre")
+    fun getMoviesByGenre(genre: String): Flow<List<Movie>>
+
 }
