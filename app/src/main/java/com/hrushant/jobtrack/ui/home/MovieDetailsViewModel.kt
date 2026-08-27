@@ -24,4 +24,17 @@ class MovieDetailsViewModel(
                 repository.getMovieById(movieId)
         }
     }
+
+    fun updateMyListStatus(
+        movieId: Int,
+        isInMyList: Boolean
+    ) {
+        viewModelScope.launch {
+
+            repository.updateMyListStatus(
+                movieId,
+                isInMyList
+            )
+        }
+    }
 }

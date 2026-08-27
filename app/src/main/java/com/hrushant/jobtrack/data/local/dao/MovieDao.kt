@@ -31,4 +31,17 @@ interface MovieDao {
     @Query("SELECT * FROM movies WHERE genre = :genre")
     fun getMoviesByGenre(genre: String): Flow<List<Movie>>
 
+    @Query("""
+    UPDATE movies
+    SET isInMyList = :isInMyList
+    WHERE id = :movieId
+""")
+    suspend fun updateMyListStatus(
+        movieId: Int,
+        isInMyList: Boolean
+    )
+
+    @Query("SELECT * FROM movies WHERE isInMyList = 1")
+    fun getMyListMovies(): Flow<List<Movie>>
+
 }

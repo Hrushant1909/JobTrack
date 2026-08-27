@@ -36,4 +36,18 @@ class MovieRepository(
         return movieDao.getMoviesByGenre(genre)
     }
 
+    suspend fun updateMyListStatus(
+        movieId: Int,
+        isInMyList: Boolean
+    ) {
+        movieDao.updateMyListStatus(
+            movieId,
+            isInMyList
+        )
+    }
+    fun getMyListMovies(): Flow<List<Movie>> {
+        return movieDao.getMyListMovies()
+    }
+
+
 }

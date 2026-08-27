@@ -21,5 +21,6 @@ data class Movie(
 
     val releaseYear: Int,
 
-    val category: String
+    val category: String,
+    val isInMyList: Boolean = false
 )
